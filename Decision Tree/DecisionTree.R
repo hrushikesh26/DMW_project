@@ -1,9 +1,11 @@
 library("e1071")
-args <- commandArgs(TRUE);
-
+ args <- commandArgs(TRUE);
+#args
+#args = c(1000025,5,1,1,1,3,1,2,1,1)
+ar = c(args)
 if(!file.exists("bcw_dec_tree.rda")) {
 
-library(caret)
+#library(caret
 raw=read.csv("breast-cancer-wisconsin.csv",na.strings=c("?","NA"))
 
 raw$g[is.na(raw$g)] <- 1
@@ -16,10 +18,10 @@ test=raw[-index,]
 library(rpart)
 model=rpart(label~.,train)
 pred=predict(model,test[,-11],type='class')
-pred
+#pred
 tx=table(test$label,pred)
 #cf = confusionMatrix(tx)
-save(tx, file = "bcw_dec_tree.rda")
+save(tx, file = "bcw_dec_treecc.rda")
 save(model, file = "bcw_dec_tree.rda")
 
 }else{
@@ -35,9 +37,9 @@ if (length(args)==10){
   x = as.data.frame(t(as.numeric(as.vector(args))))
   names(x)=names(raw[,(1:10)])
 
-  ans=predict(model,x)
-  prob=predict(model,x,type="raw")
-  
+  ans=predict(model,x,type='class')
+  # prob=predict(model,x,type="raw")
+  # print(x)
     if(ans==2){
             print("Predicted as Benign")
             #print(paste("Benign ",ans," <br />","Probablity Benign==>",prob[1,1]," <br /> Probablity Malignant==>",prob[1,2],"<br />"))
