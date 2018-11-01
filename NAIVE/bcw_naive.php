@@ -15,25 +15,36 @@ $Mitoses = $_POST["Mitoses"];
 
 <html>
 <head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="styling.css"></link>
 <title>Predictor</title>
 </head>
 
 <body>
-  <p>
+  <div class="container">
+   <div class="row">
+      <div class="col-md-4">
+  		<div class="form_main">
+                  <h4 class="heading"><strong> Cancer </strong> Detector<span></span></h4>
+  <div class="form">
   <form method="post">
-  <br/>Sample code number: <input type="number" name="codeno">
-  <br/>Clump Thickness: <input type="number" name="ClumpThickness">
-  <br/>Uniformity of Cell Size: <input type="number" name="CellSize">
-  <br/>Uniformity of Cell Shape: <input type="number" name="CellShape">
-  <br/>Marginal Adhesion: <input type="number" name="Adhesion">
-  <br/>Single Epithelial Cell Size: <input type="number" name="EpiSize">
-  <br/>Bare Nuclei: <input type="number" name="BareNuclei">
-  <br/>Bland Chromatin : <input type="number" name="Chromatin">
-  <br/>Normal Nucleoi: <input type="number" name="Nucleoi">
-  <br/>Mitoses : <input type="number" name="Mitoses">
-  <br/><input type="submit" value="submit" name="submit">
+  <br/>Sample code number: <input type="number" name="codeno" class="txt" required>
+  <br/>Clump Thickness: <input type="number" name="ClumpThickness" class="txt" required>
+  <br/>Uniformity of Cell Size: <input type="number" name="CellSize" class="txt" required>
+  <br/>Uniformity of Cell Shape: <input type="number" name="CellShape" class="txt" required>
+  <br/>Marginal Adhesion: <input type="number" name="Adhesion" class="txt" required>
+  <br/>Single Epithelial Cell Size: <input type="number" name="EpiSize" class="txt" required>
+  <br/>Bare Nuclei: <input type="number" name="BareNuclei" class="txt" required>
+  <br/>Bland Chromatin : <input type="number" name="Chromatin" class="txt" required>
+  <br/>Normal Nucleoi: <input type="number" name="Nucleoi" class="txt" required>
+  <br/>Mitoses : <input type="number" name="Mitoses" class="txt" required>
+  <br/><input type="submit" value="submit" name="submit" class="txt2" required>
   </form>
-  </p>
+</div>
+</div>
+</div class="col-md-6">
 
 <!--
 #  Attribute                     Domain
@@ -55,7 +66,6 @@ if (isset($_POST['submit']))
 {
   // display the output
   echo "<p>";
-  echo "<Values You Provided:>";
   echo "Sample code number: $codeno<br />";
   echo "Clump Thickness: $ClumpThickness<br />";
   echo "Uniformity of Cell Size: $CellSize<br />";
