@@ -55,6 +55,7 @@ if (isset($_POST['submit']))
 {
   // display the output
   echo "<p>";
+  echo "<Values You Provided:>";
   echo "Sample code number: $codeno<br />";
   echo "Clump Thickness: $ClumpThickness<br />";
   echo "Uniformity of Cell Size: $CellSize<br />";
