@@ -2,10 +2,10 @@
 
 library("e1071")
 args <- commandArgs(TRUE);
-# args=read.csv("ip.csv",na.strings=c("?","NA"))
-if(!file.exists("bcw_naive.rda")) {
+#args=c(1369821,10,10,10,10,5,10,10,10,7)
+if(!file.exists("bcw_svm.rda")) {
   
-  library(caret)
+  #library(caret)
   raw=read.csv("breast-cancer-wisconsin.csv",na.strings=c("?","NA"))
   
   raw$g[is.na(raw$g)] <- 1
@@ -17,7 +17,7 @@ if(!file.exists("bcw_naive.rda")) {
   
   train_data=train[-11]
   train_label=train$label
-  model=svm(train_data,train_label)
+  model=svm(train_label~.,data=train_data)
   # model=naiveBayes(label~.,train)
   
   testData=test[-11]
@@ -36,28 +36,27 @@ if(!file.exists("bcw_naive.rda")) {
   table(pred,testLabel)
   
   #cf = confusionMatrix(tx)
-  save(tx, file = "bcw_naiveacc.rda")
-  save(model, file = "bcw_naive.rda")
+  save(tx, file = "bcw_svm_acc.rda")
+  save(model, file = "bcw_svm.rda")
   
   
 }else{
   
-  load("bcw_naive.rda")
-  load("bcw_naiveacc.rda")
+  load("bcw_svm.rda")
+  load("bcw_svm_acc.rda")
   
 }
 # --------------------------------------------------------------
 
 
 if (length(args)==10){
-  args
   raw=read.csv("breast-cancer-wisconsin.csv")
   x = as.data.frame(t(as.numeric(as.vector(args))))
   names(x)=names(raw[,(1:10)])
-  names(x)
-  ans=predict(model,x)
-  prob=predict(model,x,type="raw")
-  nrow(ans)
+  #names(x)
+  ans=predict(model,x,type="class")
+  #prob=predict(model,x,type="raw")
+  #nrow(ans)
   if(ans==2){
     print("Predicted as Benign")
     #print(paste("Benign ",ans," <br />","Probablity Benign==>",prob[1,1]," <br /> Probablity Malignant==>",prob[1,2],"<br />"))
@@ -68,4 +67,5 @@ if (length(args)==10){
 }else{
   print("Insufficient Input")
 }
+
 
